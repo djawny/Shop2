@@ -3,17 +3,12 @@ package com.offcasoftware.shop2.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.widget.LinearLayout;
 
 import com.offcasoftware.shop2.model.Product;
 import com.offcasoftware.shop2.view.ProductDetailsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by RENT on 2017-03-15.
- */
 
 public class ProductPageAdapter extends FragmentPagerAdapter {
 

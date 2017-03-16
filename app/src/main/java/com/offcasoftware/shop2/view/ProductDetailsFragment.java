@@ -10,8 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.model.Product;
 import com.offcasoftware.shop2.repository.ProductRepository;
@@ -19,9 +18,8 @@ import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
 
 import java.util.List;
 
-/**
- * Created by krzysztofjanik on 13.03.2017.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ProductDetailsFragment extends Fragment {
 

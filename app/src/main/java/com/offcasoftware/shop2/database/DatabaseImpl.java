@@ -1,7 +1,5 @@
 package com.offcasoftware.shop2.database;
 
-import com.offcasoftware.shop2.model.Product;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,12 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.offcasoftware.shop2.model.Product;
+
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * @author maciej.pachciarek on 2017-03-06.
- */
 
 public class DatabaseImpl extends SQLiteOpenHelper implements Database {
 

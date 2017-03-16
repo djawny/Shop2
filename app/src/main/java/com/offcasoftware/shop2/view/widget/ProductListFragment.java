@@ -1,7 +1,6 @@
 package com.offcasoftware.shop2.view.widget;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,10 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import butterknife.BindDimen;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.adapter.ProductAdapter;
 import com.offcasoftware.shop2.model.Product;
@@ -23,9 +18,8 @@ import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
 
 import java.util.List;
 
-/**
- * Created by krzysztofjanik on 13.03.2017.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class ProductListFragment extends Fragment implements ProductCardView.ProductCardViewInterface {
 

@@ -1,16 +1,12 @@
 package com.offcasoftware.shop2;
 
+import android.app.Application;
+
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.offcasoftware.shop2.database.Database;
 import com.offcasoftware.shop2.database.DatabaseOrmImpl;
 
-import android.app.Application;
-
 import java.sql.SQLException;
-
-/**
- * @author maciej.pachciarek on 2017-03-06.
- */
 
 public class AndroidApplication extends Application {
 

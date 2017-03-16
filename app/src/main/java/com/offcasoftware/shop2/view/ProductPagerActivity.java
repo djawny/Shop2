@@ -1,8 +1,8 @@
 package com.offcasoftware.shop2.view;
 
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.adapter.ProductPageAdapter;

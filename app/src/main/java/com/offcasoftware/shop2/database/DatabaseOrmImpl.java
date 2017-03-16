@@ -1,5 +1,9 @@
 package com.offcasoftware.shop2.database;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
@@ -8,16 +12,8 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.offcasoftware.shop2.model.Product;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-
 import java.sql.SQLException;
 import java.util.List;
-
-/**
- * @author maciej.pachciarek on 2017-03-07.
- */
 
 public class DatabaseOrmImpl extends OrmLiteSqliteOpenHelper
         implements Database {

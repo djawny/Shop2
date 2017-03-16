@@ -1,9 +1,5 @@
 package com.offcasoftware.shop2.view;
 
-import com.offcasoftware.shop2.AndroidApplication;
-import com.offcasoftware.shop2.R;
-import com.offcasoftware.shop2.database.Database;
-
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,15 +7,15 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.offcasoftware.shop2.AndroidApplication;
+import com.offcasoftware.shop2.R;
+import com.offcasoftware.shop2.database.Database;
+
 import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-/**
- * @author maciej.pachciarek on 2017-02-20.
- */
 
 public class AddProductActivity extends AppCompatActivity {
 

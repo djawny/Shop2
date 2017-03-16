@@ -5,10 +5,6 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-/**
- * @author maciej.pachciarek on 2017-02-18.
- */
-
 @DatabaseTable(tableName = Product.TABLE_NAME)
 public class Product implements Serializable {
 

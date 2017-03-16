@@ -1,25 +1,18 @@
 package com.offcasoftware.shop2.view.widget;
 
-import com.offcasoftware.shop2.R;
-import com.offcasoftware.shop2.model.Product;
-
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import butterknife.BindDimen;
+import com.offcasoftware.shop2.R;
+import com.offcasoftware.shop2.model.Product;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-/**
- * @author maciej.pachciarek on 2017-02-18.
- */
 
 public class ProductCardView extends CardView {
 
@@ -27,9 +20,6 @@ public class ProductCardView extends CardView {
 
         void onProductClicked(Product product);
     }
-
-    @BindDimen(R.dimen.product_list_item_height)
-    int mProductListItemHeight;
 
     @BindView(R.id.product_image)
     ImageView mProductImage;

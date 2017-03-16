@@ -11,10 +11,6 @@ import com.offcasoftware.shop2.view.widget.ProductCardView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by krzysztofjanik on 14.03.2017.
- */
-
 public class ProductAdapter extends RecyclerView.Adapter implements ProductCardView.ProductCardViewInterface {
 
     private List<Product> mItems = new ArrayList<>();

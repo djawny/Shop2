@@ -1,14 +1,10 @@
 package com.offcasoftware.shop2.view;
 
-import android.support.annotation.Nullable;
-import com.offcasoftware.shop2.R;
-import com.offcasoftware.shop2.model.Product;
-import com.offcasoftware.shop2.view.widget.FagmentCommunicationActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,16 +14,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.offcasoftware.shop2.R;
+import com.offcasoftware.shop2.model.Product;
+import com.offcasoftware.shop2.view.widget.ProductListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.offcasoftware.shop2.view.widget.ProductListFragment;
 
 public class MainActivity extends AppCompatActivity implements ProductListFragment.OnProductSelected {
-
-    @BindView(R.id.activity_main)
-    View mRootLayout;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -154,12 +151,10 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     private void onNavigationItemSelected(@IdRes int menuId) {
         switch (menuId) {
             case R.id.action1:
-                //Toast.makeText(MainActivity.this, "Action1", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, StorageActivity.class));
+                Toast.makeText(MainActivity.this, "Action1", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action2:
-                //Toast.makeText(MainActivity.this, "Action2", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, Test.class));
+                Toast.makeText(MainActivity.this, "Action2", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action3:
                 startActivity(new Intent(this, ProductPagerActivity.class));

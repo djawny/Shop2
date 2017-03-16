@@ -4,10 +4,6 @@ import com.offcasoftware.shop2.model.Product;
 
 import java.util.List;
 
-/**
- * @author maciej.pachciarek on 2017-03-06.
- */
-
 public interface Database {
 
     void saveProducts(List<Product> products);

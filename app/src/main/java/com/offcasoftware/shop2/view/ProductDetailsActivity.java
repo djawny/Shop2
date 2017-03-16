@@ -1,25 +1,9 @@
 package com.offcasoftware.shop2.view;
 
-import com.offcasoftware.shop2.R;
-import com.offcasoftware.shop2.model.Product;
-import com.offcasoftware.shop2.repository.ProductRepository;
-import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
-
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-/**
- * @author maciej.pachciarek on 2017-02-18.
- */
+import com.offcasoftware.shop2.R;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 

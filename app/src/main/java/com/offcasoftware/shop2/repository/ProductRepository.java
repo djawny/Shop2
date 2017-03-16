@@ -7,10 +7,6 @@ import com.offcasoftware.shop2.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author maciej.pachciarek on 2017-02-18.
- */
-
 public class ProductRepository implements ProductRepositoryInterface {
 
     private static ProductRepository mInstance = new ProductRepository();
