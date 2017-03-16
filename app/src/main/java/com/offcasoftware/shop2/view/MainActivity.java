@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.model.Product;
-import com.offcasoftware.shop2.view.widget.ProductListFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

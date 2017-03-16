@@ -34,7 +34,7 @@
                       android:weightSum="10"  >
 
             <fragment
-                    android:name="com.offcasoftware.shop2.view.widget.ProductListFragment"
+                    android:name="com.offcasoftware.shop2.view.ProductListFragment"
                     android:id="@+id/fragment_product_list"
                     android:layout_width="0dp"
                     android:layout_weight="3"

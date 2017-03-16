@@ -29,7 +29,7 @@
         </android.support.design.widget.AppBarLayout>
 
         <fragment
-                android:name="com.offcasoftware.shop2.view.widget.ProductListFragment"
+                android:name="com.offcasoftware.shop2.view.ProductListFragment"
                 android:id="@+id/fragment_product_list"
                 android:layout_width="match_parent"
                 android:layout_marginTop="?attr/actionBarSize"

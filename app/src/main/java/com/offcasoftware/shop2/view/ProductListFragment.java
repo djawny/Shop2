@@ -1,4 +1,4 @@
-package com.offcasoftware.shop2.view.widget;
+package com.offcasoftware.shop2.view;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.offcasoftware.shop2.adapter.ProductAdapter;
 import com.offcasoftware.shop2.model.Product;
 import com.offcasoftware.shop2.repository.ProductRepository;
 import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
+import com.offcasoftware.shop2.view.widget.ProductCardView;
 
 import java.util.List;
 
