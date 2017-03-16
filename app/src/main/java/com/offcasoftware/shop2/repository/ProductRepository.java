@@ -28,6 +28,11 @@ public class ProductRepository implements ProductRepositoryInterface {
         products.add(product2);
         products.add(product3);
 
+//        for (int i = 0; i < 1000; i++) {
+//            Product product = new Product(i, "dom" + String.valueOf(i), i, "dom1");
+//            products.add(product);
+//        }
+
         mDatabase.saveProducts(products);
     }
 

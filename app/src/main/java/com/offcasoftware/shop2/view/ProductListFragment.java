@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +14,8 @@ import android.view.ViewGroup;
 
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.adapter.ProductAdapter;
+import com.offcasoftware.shop2.loaders.GetAllProducts;
 import com.offcasoftware.shop2.model.Product;
-import com.offcasoftware.shop2.repository.ProductRepository;
-import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
 import com.offcasoftware.shop2.view.widget.ProductCardView;
 
 import java.util.List;
@@ -22,22 +23,39 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductListFragment extends Fragment implements ProductCardView.ProductCardViewInterface {
+public class ProductListFragment extends Fragment
+        implements ProductCardView.ProductCardViewInterface, LoaderManager.LoaderCallbacks<List<Product>> {
 
     @BindView(R.id.product_recycler)
     RecyclerView mRecyclerView;
+
+    @Override
+    public Loader<List<Product>> onCreateLoader(int id, Bundle args) {
+        return new GetAllProducts(getActivity());
+    }
+
+    @Override
+    public void onLoadFinished(Loader<List<Product>> loader, List<Product> data) {
+        displayData(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<List<Product>> loader) {
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getLoaderManager().initLoader(1, null, this);
+    }
 
     public interface OnProductSelected {
         void onProductSelected(Product product);
 
     }
 
-    private ProductAdapter mProductAdapter;
-    private List<Product> products;
     private OnProductSelected mListener;
-
-    private ProductRepositoryInterface mProductRepository
-            = ProductRepository.getInstance();
 
     @Nullable
     @Override
@@ -50,12 +68,6 @@ public class ProductListFragment extends Fragment implements ProductCardView.Pro
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        displayData();
-    }
-
-    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (activity instanceof OnProductSelected) {
@@ -63,18 +75,9 @@ public class ProductListFragment extends Fragment implements ProductCardView.Pro
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        products = mProductRepository.getProducts();
-        mProductAdapter.swapData(products);
-    }
-
-    private void displayData() {
-        products = mProductRepository.getProducts();
+    private void displayData(List<Product> products) {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mProductAdapter = new ProductAdapter(products, this);
-        mRecyclerView.setAdapter(mProductAdapter);
+        mRecyclerView.setAdapter(new ProductAdapter(products, this));
     }
 
     @Override
