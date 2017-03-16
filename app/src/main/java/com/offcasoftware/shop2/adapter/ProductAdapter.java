@@ -17,8 +17,7 @@ public class ProductAdapter extends RecyclerView.Adapter implements ProductCardV
 
     private ProductCardView.ProductCardViewInterface mListener;
 
-    public ProductAdapter(List<Product> products, ProductCardView.ProductCardViewInterface listener) {
-        mItems.addAll(products);
+    public ProductAdapter(ProductCardView.ProductCardViewInterface listener) {
         mListener = listener;
     }
 
@@ -70,5 +69,10 @@ public class ProductAdapter extends RecyclerView.Adapter implements ProductCardV
             mItems.addAll(products);
             notifyDataSetChanged();
         }
+    }
+
+    public void clear() {
+        mItems.clear();
+        notifyDataSetChanged();
     }
 }
