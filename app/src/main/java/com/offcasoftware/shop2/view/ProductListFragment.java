@@ -35,8 +35,8 @@ public class ProductListFragment extends Fragment
     }
 
     @Override
-    public void onLoadFinished(Loader<List<Product>> loader, List<Product> data) {
-        displayData(data);
+    public void onLoadFinished(Loader<List<Product>> loader, List<Product> products) {
+        displayData(products);
     }
 
     @Override
