@@ -76,23 +76,14 @@ public class ProductDetailsFragment extends Fragment implements LoaderManager.Lo
 //        }
 //    }
 
-    public void updateProduct(Product product) {
-        displayData(product);
-    }
-
-    private void displayData(final Product product) {
-        int drawableResourceId = this.getResources()
-                .getIdentifier(product.getImageResId(), "drawable",
-                        getActivity().getPackageName());
-        mProductImage.setImageResource(drawableResourceId);
-        mProductName.setText(product.getName());
-        mProductPrice.setText(String.valueOf(product.getPrice()));
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getLoaderManager().initLoader(2, getArguments(), this);
+    }
+
+    public void updateProduct(Product product) {
+        displayData(product);
     }
 
     @Override
@@ -109,5 +100,14 @@ public class ProductDetailsFragment extends Fragment implements LoaderManager.Lo
     @Override
     public void onLoaderReset(Loader<Product> loader) {
 
+    }
+
+    private void displayData(final Product product) {
+        int drawableResourceId = this.getResources()
+                .getIdentifier(product.getImageResId(), "drawable",
+                        getActivity().getPackageName());
+        mProductImage.setImageResource(drawableResourceId);
+        mProductName.setText(product.getName());
+        mProductPrice.setText(String.valueOf(product.getPrice()));
     }
 }

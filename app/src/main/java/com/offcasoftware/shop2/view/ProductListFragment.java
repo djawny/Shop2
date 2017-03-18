@@ -39,6 +39,9 @@ public class ProductListFragment extends Fragment
 
     @Override
     public void onLoadFinished(Loader<List<Product>> loader, List<Product> products) {
+        if (mListener != null) {
+            mListener.onProductReady(products);
+        }
         mAdapter.swapData(products);
     }
 
@@ -62,6 +65,8 @@ public class ProductListFragment extends Fragment
     }
 
     public interface OnProductSelected {
+        void onProductReady(List<Product> products);
+
         void onProductSelected(Product product);
     }
 

@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.model.Product;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -157,8 +159,15 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
                 break;
             case R.id.action3:
                 startActivity(new Intent(this, ProductPagerActivity.class));
-               // Toast.makeText(MainActivity.this, "Action3", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(MainActivity.this, "Action3", Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+
+    @Override
+    public void onProductReady(List<Product> products) {
+        if (mProductDetailsFragment != null && !products.isEmpty()) {
+            mProductDetailsFragment.updateProduct(products.get(0));
         }
     }
 
