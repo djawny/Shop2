@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     @BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNavigationView;
 
-    private ProductListFragment mProductListFragment;
-    private ProductDetailsFragment mProductDetailsFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,17 +50,6 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
         setupActionBarDrawerToggle();
         setupNavigationView();
         setupBottomNavigationView();
-
-        mProductListFragment =
-                (ProductListFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_product_list);
-        mProductDetailsFragment =
-                (ProductDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_product_details);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mProductDetailsFragment = null;
     }
 
     @Override
@@ -166,19 +152,28 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
 
     @Override
     public void onProductReady(List<Product> products) {
-        if (mProductDetailsFragment != null && !products.isEmpty()) {
-            mProductDetailsFragment.updateProduct(products.get(0));
+        if (getmProductDetailsFragment() != null && !products.isEmpty()) {
+            getmProductDetailsFragment().updateProduct(products.get(0));
         }
     }
 
     @Override
     public void onProductSelected(Product product) {
-        if (mProductDetailsFragment != null) {
-            mProductDetailsFragment.updateProduct(product);
+        if (getmProductDetailsFragment() != null) {
+            getmProductDetailsFragment().updateProduct(product);
         } else {
             Intent intent = new Intent(this, ProductDetailsActivity.class);
             intent.putExtra(ProductDetailsActivity.INTENT_PRODUCT_ID, product.getId());
             startActivity(intent);
         }
+    }
+
+    ProductDetailsFragment getmProductDetailsFragment() {
+        final ProductDetailsFragment fragment =
+                (ProductDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_product_details);
+        if (fragment != null && !fragment.isAdded()) {
+            return null;
+        }
+        return fragment;
     }
 }

@@ -103,9 +103,11 @@ public class ProductDetailsFragment extends Fragment implements LoaderManager.Lo
     }
 
     private void displayData(final Product product) {
+        if (product == null) {
+            return;
+        }
         int drawableResourceId = this.getResources()
-                .getIdentifier(product.getImageResId(), "drawable",
-                        getActivity().getPackageName());
+                .getIdentifier(product.getImageResId(), "drawable", getActivity().getPackageName());
         mProductImage.setImageResource(drawableResourceId);
         mProductName.setText(product.getName());
         mProductPrice.setText(String.valueOf(product.getPrice()));
