@@ -141,7 +141,8 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
                 Toast.makeText(MainActivity.this, "Opcja 1", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action2:
-                Toast.makeText(MainActivity.this, "Opcja 2", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, ContactsActivity.class));
+                Toast.makeText(MainActivity.this, "Contacts", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action3:
                 startActivity(new Intent(this, ProductPagerActivity.class));

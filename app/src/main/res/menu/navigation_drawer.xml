@@ -9,7 +9,7 @@
     <item
         android:id="@+id/action2"
         android:icon="@drawable/ic_information"
-        android:title="Opcja 2" />
+        android:title="Contacts" />
 
     <item
         android:id="@+id/action3"
