@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.adapter.ProductAdapter;
-import com.offcasoftware.shop2.loaders.GetAllProducts;
+import com.offcasoftware.shop2.loader.GetAllProducts;
 import com.offcasoftware.shop2.model.Product;
 import com.offcasoftware.shop2.view.widget.ProductCardView;
 

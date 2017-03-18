@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.offcasoftware.shop2.R;
-import com.offcasoftware.shop2.loaders.GetProductDetails;
+import com.offcasoftware.shop2.loader.GetProductDetails;
 import com.offcasoftware.shop2.model.Product;
 
 import butterknife.BindView;
