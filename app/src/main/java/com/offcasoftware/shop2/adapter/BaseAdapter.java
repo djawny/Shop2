@@ -13,6 +13,12 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
 
+    public abstract void onBind(RecyclerView.ViewHolder holder, T item, int position);
+
+    public BaseAdapter(Context context) {
+        this(context, null);
+    }
+
     public BaseAdapter(Context context, List<T> list) {
         if (context == null) {
             throw new IllegalArgumentException("Context cannot be null!!!");
@@ -24,23 +30,41 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
         }
     }
 
-    public T getItem(int position) {
-        final T item = mItems.get(position);
-        return item;
-    }
-
     @Override
     public int getItemCount() {
         return mItems.size();
     }
 
-    public Context getContext() {
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        final T item = getItem(position);
+        onBind(holder, item, position);
+    }
+
+    public final Context getContext() {
         return mContext;
     }
 
-    public LayoutInflater getLayoutInflater() {
+    public final LayoutInflater getLayoutInflater() {
         return mLayoutInflater;
     }
 
+    public T getItem(int position) {
+        final T item = mItems.get(position);
+        return item;
+    }
+
+    public void swapData(List<T> items) {
+        if (items != null) {
+            mItems.clear();
+            mItems.addAll(items);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void clearData() {
+        mItems.clear();
+        notifyDataSetChanged();
+    }
 
 }

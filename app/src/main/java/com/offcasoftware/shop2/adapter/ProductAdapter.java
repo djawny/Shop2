@@ -11,14 +11,17 @@ import com.offcasoftware.shop2.view.widget.ProductCardView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter implements ProductCardView.ProductCardViewInterface {
-
-    private List<Product> mItems = new ArrayList<>();
+public class ProductAdapter extends BaseAdapter<Product> implements ProductCardView.ProductCardViewInterface {
 
     private ProductCardView.ProductCardViewInterface mListener;
 
-    public ProductAdapter(ProductCardView.ProductCardViewInterface listener) {
-        mListener = listener;
+    public ProductAdapter(Context context, ProductCardView.ProductCardViewInterface listener) {
+        this(context, null, listener);
+    }
+
+    public ProductAdapter(Context context, List<Product> list, ProductCardView.ProductCardViewInterface mListener) {
+        super(context, list);
+        this.mListener = mListener;
     }
 
     @Override
@@ -30,18 +33,8 @@ public class ProductAdapter extends RecyclerView.Adapter implements ProductCardV
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        final Product product = getItem(position);
-        ((ProductHolder) holder).bind(product);
-    }
-
-    @Override
-    public int getItemCount() {
-        return mItems.size();
-    }
-
-    public Product getItem(int position) {
-        return mItems.get(position);
+    public void onBind(RecyclerView.ViewHolder holder, Product item, int position) {
+        ((ProductHolder) holder).bind(item);
     }
 
     @Override
@@ -50,7 +43,6 @@ public class ProductAdapter extends RecyclerView.Adapter implements ProductCardV
             mListener.onProductClicked(product);
         }
     }
-
 
     public class ProductHolder extends RecyclerView.ViewHolder {
 
@@ -61,18 +53,5 @@ public class ProductAdapter extends RecyclerView.Adapter implements ProductCardV
         public void bind(Product product) {
             ((ProductCardView) itemView).bindTo(product, ProductAdapter.this);
         }
-    }
-
-    public void swapData(List<Product> products) {
-        if (products != null) {
-            mItems.clear();
-            mItems.addAll(products);
-            notifyDataSetChanged();
-        }
-    }
-
-    public void clear() {
-        mItems.clear();
-        notifyDataSetChanged();
     }
 }

@@ -47,7 +47,7 @@ public class ProductListFragment extends Fragment
 
     @Override
     public void onLoaderReset(Loader<List<Product>> loader) {
-        mAdapter.clear();
+        mAdapter.clearData();
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ProductListFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mAdapter = new ProductAdapter(this);
+        mAdapter = new ProductAdapter(getActivity(), this);
         mRecyclerView.setAdapter(mAdapter);
         getLoaderManager().initLoader(1, null, this);
     }
