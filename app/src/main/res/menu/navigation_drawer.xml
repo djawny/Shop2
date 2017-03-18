@@ -4,16 +4,16 @@
     <item
         android:id="@+id/action1"
         android:icon="@drawable/ic_action_name"
-        android:title="O mnoie" />
+        android:title="Opcja 1" />
 
     <item
         android:id="@+id/action2"
         android:icon="@drawable/ic_information"
-        android:title="O aplikacji" />
+        android:title="Opcja 2" />
 
     <item
         android:id="@+id/action3"
         android:icon="@drawable/ic_private_policy"
-        android:title="Regulamin" />
+        android:title="ViewPager" />
 
 </menu>

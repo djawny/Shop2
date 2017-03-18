@@ -138,10 +138,10 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
     private void onNavigationItemSelected(@IdRes int menuId) {
         switch (menuId) {
             case R.id.action1:
-                Toast.makeText(MainActivity.this, "Action1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Opcja 1", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action2:
-                Toast.makeText(MainActivity.this, "Action2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Opcja 2", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action3:
                 startActivity(new Intent(this, ProductPagerActivity.class));
