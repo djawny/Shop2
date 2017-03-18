@@ -32,7 +32,8 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        int size = mItems.size();
+        return size;
     }
 
     @Override
