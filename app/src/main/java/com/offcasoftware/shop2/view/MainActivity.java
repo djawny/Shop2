@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements ProductListFragme
                 break;
             case R.id.action3:
                 startActivity(new Intent(this, ProductPagerActivity.class));
-                // Toast.makeText(MainActivity.this, "Action3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "ViewPager", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
