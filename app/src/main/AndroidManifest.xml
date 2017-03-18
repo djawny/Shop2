@@ -3,6 +3,7 @@
     package="com.offcasoftware.shop2">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".AndroidApplication"
@@ -28,7 +29,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".view.ProductPagerActivity"></activity>
+        <activity android:name=".view.ProductPagerActivity" />
+        <activity android:name=".view.ContactsActivity"></activity>
     </application>
 
 </manifest>
