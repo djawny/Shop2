@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.offcasoftware.shop2.R;
 
@@ -32,6 +33,9 @@ public class ContactsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {
+                Toast.makeText(this, "Błagam kliknij", Toast.LENGTH_SHORT).show();
+            }
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.READ_CONTACTS}, READ_CONTACTS_REQUEST);
         } else {
@@ -48,8 +52,17 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
+        switch (requestCode) {
+            case READ_CONTACTS_REQUEST:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    loadContacts();
+                } else {
+                    mContactsCounter.setText("No permission");
+                }
+                break;
+        }
     }
 }
