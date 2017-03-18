@@ -65,7 +65,7 @@ public class ContactsActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     loadContacts();
                 } else {
-                    Toast.makeText(this, "No permission", Toast.LENGTH_SHORT);
+                    Toast.makeText(this, "No permission", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
