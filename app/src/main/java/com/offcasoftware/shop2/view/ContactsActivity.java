@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +24,8 @@ public class ContactsActivity extends AppCompatActivity {
 
     private static final int READ_CONTACTS_REQUEST = 1;
 
-    @BindView(R.id.contacts_counter)
-    TextView mContactsCounter;
+    @BindView(R.id.contact_recycle_view)
+    RecyclerView mContactRecycleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +44,6 @@ public class ContactsActivity extends AppCompatActivity {
         }
     }
 
-    private void loadContacts() {
-        Uri contentUri = ContactsContract.Contacts.CONTENT_URI;
-        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
-        if (cursor != null) {
-            mContactsCounter.setText(String.valueOf(cursor.getCount()));
-        }
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -60,9 +53,18 @@ public class ContactsActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     loadContacts();
                 } else {
-                    mContactsCounter.setText("No permission");
+                    Toast.makeText(this, "No permission", Toast.LENGTH_SHORT);
                 }
                 break;
+        }
+    }
+
+    private void loadContacts() {
+        Uri contentUri = ContactsContract.Contacts.CONTENT_URI;
+        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
+        if (cursor != null) {
+
+            cursor.close();
         }
     }
 }

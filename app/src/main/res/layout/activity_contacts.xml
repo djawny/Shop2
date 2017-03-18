@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context="com.offcasoftware.shop2.view.ContactsActivity">
 
-    <TextView
-        android:id="@+id/contacts_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="100" />
+    <android.support.v7.app.AlertController.RecycleListView
+        android:id="@+id/contact_recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </android.support.constraint.ConstraintLayout>
