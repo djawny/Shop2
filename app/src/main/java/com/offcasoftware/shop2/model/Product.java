@@ -1,5 +1,7 @@
 package com.offcasoftware.shop2.model;
 
+import android.database.Cursor;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -27,12 +29,18 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(final int id, final String name,
-            final int price, final String imageName) {
+    public Product(final int id, final String name, final int price, final String imageName) {
         mId = id;
         mName = name;
         mPrice = price;
         mImage = imageName;
+    }
+
+    public Product(Cursor cursor) {
+        mId = cursor.getInt(0);
+        mName = cursor.getString(1);
+        mPrice = cursor.getInt(2);
+        mImage = cursor.getString(3);
     }
 
     public int getId() {

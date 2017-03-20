@@ -1,9 +1,12 @@
 package com.offcasoftware.shop2.view;
 
+import android.content.ContentUris;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -13,13 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.offcasoftware.shop2.R;
-import com.offcasoftware.shop2.loader.GetProductDetails;
 import com.offcasoftware.shop2.model.Product;
+import com.offcasoftware.shop2.provider.ProductProvider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ProductDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Product> {
+public class ProductDetailsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String INTENT_PRODUCT_ID =
             ProductDetailsActivity.class.getSimpleName() + "productId";
@@ -87,25 +90,34 @@ public class ProductDetailsFragment extends Fragment implements LoaderManager.Lo
     }
 
     @Override
-    public Loader<Product> onCreateLoader(int id, Bundle bundle) {
+    public Loader<Cursor> onCreateLoader(int id, Bundle bundle) {
         int productId = bundle != null ? bundle.getInt(INTENT_PRODUCT_ID, Product.UNDEFINED) : Product.UNDEFINED;
-        return new GetProductDetails(getActivity(), productId);
+//        return new GetProductDetails(getActivity(), productId);
+        return new CursorLoader(getActivity(),
+                ContentUris.withAppendedId(ProductProvider.CONTENT_URI, productId), null, null, null, null);
     }
 
     @Override
-    public void onLoadFinished(Loader<Product> loader, Product product) {
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        displayData(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
+    }
+
+    private void displayData(final Cursor cursor) {
+        if (cursor == null) {
+            return;
+        }
+        cursor.moveToFirst();
+        final Product product = new Product(cursor);
+        cursor.close();
         displayData(product);
     }
 
-    @Override
-    public void onLoaderReset(Loader<Product> loader) {
-
-    }
-
-    private void displayData(final Product product) {
-        if (product == null) {
-            return;
-        }
+    private void displayData(Product product) {
         int drawableResourceId = this.getResources()
                 .getIdentifier(product.getImageResId(), "drawable", getActivity().getPackageName());
         mProductImage.setImageResource(drawableResourceId);

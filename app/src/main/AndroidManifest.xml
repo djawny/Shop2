@@ -30,7 +30,11 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".view.ProductPagerActivity" />
-        <activity android:name=".view.ContactsActivity"></activity>
+        <activity android:name=".view.ContactsActivity" />
+
+        <provider
+            android:name=".provider.ProductProvider"
+            android:authorities="com.offcasoftware.shop2.provider" />
     </application>
 
 </manifest>
