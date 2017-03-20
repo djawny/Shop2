@@ -3,13 +3,14 @@ package com.offcasoftware.shop2.view;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,9 +26,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ContactsActivity extends AppCompatActivity {
+public class ContactsActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final int READ_CONTACTS_REQUEST = 1;
+    private static final int CONTACT_LOADER = 1;
 
     @BindView(R.id.contact_recycle_view)
     RecyclerView mContactRecycleView;
@@ -72,8 +74,10 @@ public class ContactsActivity extends AppCompatActivity {
     }
 
     private void loadContacts() {
-        Uri contentUri = ContactsContract.Contacts.CONTENT_URI;
-        Cursor cursor = getContentResolver().query(contentUri, null, null, null, null);
+        getSupportLoaderManager().initLoader(CONTACT_LOADER, null, this);
+    }
+
+    private void displayContacts(Cursor cursor) {
         if (cursor == null) {
             return;
         }
@@ -84,8 +88,22 @@ public class ContactsActivity extends AppCompatActivity {
             Contact contact = new Contact(cursor);
             items.add(contact);
         } while (cursor.moveToNext());
-        cursor.close();
 
         mAdapter.swapData(items);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(this, ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        displayContacts(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mAdapter.clearData();
     }
 }
