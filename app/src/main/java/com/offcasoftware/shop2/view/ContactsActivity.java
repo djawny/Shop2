@@ -78,17 +78,10 @@ public class ContactsActivity extends AppCompatActivity {
             return;
         }
 
-        String columnName = Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ?
-                ContactsContract.Contacts.DISPLAY_NAME_PRIMARY :
-                ContactsContract.Contacts.DISPLAY_NAME;
-
         List<Contact> items = new ArrayList<>();
-
         cursor.moveToFirst();
         do {
-            int id = cursor.getInt(cursor.getColumnIndex("_id"));
-            String name = cursor.getString(cursor.getColumnIndex(columnName));
-            Contact contact = new Contact(id, name);
+            Contact contact = new Contact(cursor);
             items.add(contact);
         } while (cursor.moveToNext());
         cursor.close();
