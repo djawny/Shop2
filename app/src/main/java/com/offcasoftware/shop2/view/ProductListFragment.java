@@ -101,7 +101,7 @@ public class ProductListFragment extends Fragment
     }
 
     private List<Product> getProducts(Cursor cursor) {
-        if (cursor == null) {
+        if (cursor == null || cursor.getCount() == 0) {
             return Collections.emptyList();
         }
         final List<Product> products = new ArrayList<>();
