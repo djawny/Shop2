@@ -1,6 +1,7 @@
 package com.offcasoftware.shop2.view;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -66,14 +67,13 @@ public class ProductListFragment extends Fragment implements ProductCardView.Pro
     public interface OnProductSelected {
         void onProductReady(List<Product> products);
         void onProductSelected(Product product);
-
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof OnProductSelected) {
-            mListener = (OnProductSelected) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnProductSelected) {
+            mListener = (OnProductSelected) context;
         }
     }
 
