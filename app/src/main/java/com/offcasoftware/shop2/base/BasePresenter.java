@@ -9,6 +9,9 @@ public abstract class BasePresenter<V extends BaseView> {
     }
 
     public void setView(V view) {
+        if (view == null) {
+            throw new IllegalArgumentException("No null View in Presenter");
+        }
         mView = view;
     }
 }
