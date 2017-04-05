@@ -5,30 +5,24 @@ import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class ProductListPresenterTest {
-
-    //    private ProductRepositoryInterface mRepositoryInterface = mock(ProductRepositoryInterface.class);
     @Mock
     ProductRepositoryInterface mRepositoryInterface;
-
     @Mock
     ProductListView mProductListView;
-
     private ProductListPresenter mPresenter;
 
     @Before
@@ -44,51 +38,42 @@ public class ProductListPresenterTest {
     }
 
     @Test
-    public void testPresenterShowNoDataWhenEmptyList() throws Exception {
+    public void testPresenterShowsNoDataWhenEmptyList() throws Exception {
         when(mRepositoryInterface.getProducts()).thenReturn(Collections.<Product>emptyList());
-
         mPresenter.loadProducts();
-
-        verify(mProductListView).showNoDataInfo();
-        verify(mProductListView, times(1)).showErrorInfo();
-        verify(mProductListView, never()).showProducts(ArgumentMatchers.<Product>anyList());
-    }
-
-    @Test
-    public void testPresenterShowsDataWhenEmptyList() throws Exception {
-        when(mRepositoryInterface.getProducts()).thenReturn(Collections.<Product>emptyList());
-
-        mPresenter.loadProducts();
-
         verify(mProductListView).showNoDataInfo();
         verify(mProductListView, never()).showErrorInfo();
         verify(mProductListView, never()).showProducts(ArgumentMatchers.<Product>anyList());
     }
 
     @Test
-    public void testPresenterShowsDataWhenEmptyList_2() throws Exception {
-        List products = mock(List.class);
-        when(products.isEmpty()).thenReturn(false);
-
+    public void testPresenterShowsDataWhenNoEmptyList() throws Exception {
+        List<Product> products = new ArrayList<>();
+        products.add(new Product());
         when(mRepositoryInterface.getProducts()).thenReturn(products);
-
         mPresenter.loadProducts();
-
         verify(mProductListView).showProducts(products);
         verify(mProductListView, never()).showErrorInfo();
-        verify(mProductListView, never()).showProducts(ArgumentMatchers.<Product>anyList());
+        verify(mProductListView, never()).showNoDataInfo();
     }
 
     @Test
-    public void testPresenterShowsErrorInfoWhen() throws Exception {
-        when(mRepositoryInterface.getProducts()).thenThrow(Exception.class);
-
+    public void testPresenterShowsDataWhenNoEmptyList_2() throws Exception {
+        List products = mock(List.class);
+        when(products.isEmpty()).thenReturn(false);
+        when(mRepositoryInterface.getProducts()).thenReturn(products);
         mPresenter.loadProducts();
-
-        verify(mProductListView).showErrorInfo();
+        verify(mProductListView).showProducts(products);
         verify(mProductListView, never()).showErrorInfo();
-        verify(mProductListView, never()).showProducts(ArgumentMatchers.<Product>anyList());
+        verify(mProductListView, never()).showNoDataInfo();
     }
 
-
+    @Test
+    public void testPresenterShowsErrorInfoWhenRepositoryException() throws Exception {
+        when(mRepositoryInterface.getProducts()).thenThrow(Exception.class);
+        mPresenter.loadProducts();
+        verify(mProductListView).showErrorInfo();
+        verify(mProductListView, never()).showNoDataInfo();
+        verify(mProductListView, never()).showProducts(ArgumentMatchers.<Product>anyList());
+    }
 }
