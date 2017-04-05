@@ -29,7 +29,12 @@ public class ProductPagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_pager);
         ButterKnife.bind(this);
 
-        List<Product> products = mProductRepository.getProducts();
+        List<Product> products = null;
+        try {
+            products = mProductRepository.getProducts();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mViewPager.setAdapter(new ProductPageAdapter(getSupportFragmentManager(), products));
     }
 }

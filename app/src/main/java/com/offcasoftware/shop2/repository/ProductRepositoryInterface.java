@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductRepositoryInterface {
 
     @NonNull
-    List<Product> getProducts();
+    List<Product> getProducts() throws Exception;
 
     Product getProduct(int productId);
 

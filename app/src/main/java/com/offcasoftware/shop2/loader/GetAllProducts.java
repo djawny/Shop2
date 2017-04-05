@@ -25,7 +25,12 @@ public class GetAllProducts extends AsyncTaskLoader<List<Product>> {
 
     @Override
     public List<Product> loadInBackground() {
-        final List<Product> productList = mProductRepository.getProducts();
+        List<Product> productList = null;
+        try {
+            productList = mProductRepository.getProducts();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return productList;
     }
 }

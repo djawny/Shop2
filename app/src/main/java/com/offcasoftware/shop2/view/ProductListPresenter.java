@@ -15,7 +15,15 @@ public class ProductListPresenter extends BasePresenter<ProductListView> {
     }
 
     public void loadProducts() {
-        List<Product> list = mProductRepository.getProducts();
-        getView().showProducts(list);
+        try {
+            List<Product> products = mProductRepository.getProducts();
+            if (products.isEmpty()) {
+                getView().showNoDataInfo();
+            } else {
+                getView().showProducts(products);
+            }
+        } catch (Exception e) {
+            getView().showErrorInfo();
+        }
     }
 }
