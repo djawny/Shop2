@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.offcasoftware.shop2.R;
 import com.offcasoftware.shop2.adapter.ProductAdapter;
@@ -25,6 +26,9 @@ public class ProductListFragment extends Fragment implements ProductCardView.Pro
 
     @BindView(R.id.product_recycler)
     RecyclerView mRecyclerView;
+
+    @BindView(R.id.product_info)
+    TextView mStatusTextView;
 
     private ProductAdapter mAdapter;
     private OnProductSelected mListener;
@@ -57,7 +61,20 @@ public class ProductListFragment extends Fragment implements ProductCardView.Pro
     }
 
     @Override
+    public void showNoDataInfo() {
+        mStatusTextView.setVisibility(View.VISIBLE);
+        mStatusTextView.setText(R.string.no_data);
+    }
+
+    @Override
+    public void showErrorInfo() {
+        mStatusTextView.setVisibility(View.VISIBLE);
+        mStatusTextView.setText(R.string.no_data);
+    }
+
+    @Override
     public void showProducts(List<Product> products) {
+        mStatusTextView.setVisibility(View.VISIBLE);
         if (mListener != null) {
             mListener.onProductReady(products);
         }
