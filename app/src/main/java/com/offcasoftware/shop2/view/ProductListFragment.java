@@ -1,6 +1,5 @@
 package com.offcasoftware.shop2.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -64,8 +63,10 @@ public class ProductListFragment extends Fragment implements ProductCardView.Pro
         }
         mAdapter.swapData(products);
     }
+
     public interface OnProductSelected {
         void onProductReady(List<Product> products);
+
         void onProductSelected(Product product);
     }
 
