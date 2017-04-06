@@ -49,4 +49,9 @@ public class ProductRepository implements ProductRepositoryInterface {
     public Product getProduct(final int productId) {
         return mDatabase.getProduct(productId);
     }
+
+    @Override
+    public void addProduct(Product product) {
+        mDatabase.saveProduct(product.getName(), product.getPrice());
+    }
 }

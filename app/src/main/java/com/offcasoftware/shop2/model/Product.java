@@ -43,6 +43,11 @@ public class Product implements Serializable {
         mImage = cursor.getString(3);
     }
 
+    public Product(String name, int price) {
+        mName = name;
+        mPrice = price;
+    }
+
     public int getId() {
         return mId;
     }

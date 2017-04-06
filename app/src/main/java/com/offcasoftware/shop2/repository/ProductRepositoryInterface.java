@@ -13,4 +13,6 @@ public interface ProductRepositoryInterface {
 
     Product getProduct(int productId);
 
+    void addProduct(Product product);
+
 }

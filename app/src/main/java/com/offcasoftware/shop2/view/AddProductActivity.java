@@ -17,13 +17,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddProductActivity extends AppCompatActivity {
+public class AddProductActivity extends AppCompatActivity implements AddProductView {
 
     @BindView(R.id.product_name)
     EditText mProductName;
 
     @BindView(R.id.product_price)
     EditText mProductPrice;
+
+    private AddProductPresenter mAddProductPresenter;
 
     private Database mDatabase;
 
@@ -32,7 +34,7 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         ButterKnife.bind(this);
-
+        mAddProductPresenter = new AddProductPresenter();
         mDatabase = AndroidApplication.getDatabase();
     }
 
@@ -62,7 +64,7 @@ public class AddProductActivity extends AppCompatActivity {
             new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year,
-                        int month, int dayOfMonth) {
+                                      int month, int dayOfMonth) {
                 }
             };
 }
