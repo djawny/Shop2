@@ -39,24 +39,21 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
                 .subscribeWith(new DisposableObserver<Void>() {
                     @Override
                     public void onNext(Void value) {
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         getView().showError();
-
                     }
 
                     @Override
                     public void onComplete() {
                         getView().closeScreen();
-
                     }
                 }));
     }
 
-    public void clearCompositeDisposable(){
+    public void clearCompositeDisposable() {
         mCompositeDisposable.clear();
     }
 }
