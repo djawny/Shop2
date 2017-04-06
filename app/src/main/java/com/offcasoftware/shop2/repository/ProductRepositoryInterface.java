@@ -6,6 +6,8 @@ import com.offcasoftware.shop2.model.Product;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+
 public interface ProductRepositoryInterface {
 
     @NonNull
@@ -14,4 +16,6 @@ public interface ProductRepositoryInterface {
     Product getProduct(int productId);
 
     void addProduct(Product product) throws Exception;
+
+    Observable<Void> AddProductStream(Product product);
 }

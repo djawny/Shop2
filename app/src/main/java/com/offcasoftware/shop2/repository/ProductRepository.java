@@ -6,6 +6,10 @@ import com.offcasoftware.shop2.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 
 public class ProductRepository implements ProductRepositoryInterface {
 
@@ -53,5 +57,16 @@ public class ProductRepository implements ProductRepositoryInterface {
     @Override
     public void addProduct(Product product) {
         mDatabase.saveProduct(product.getName(), product.getPrice());
+    }
+
+    @Override
+    public Observable<Void> AddProductStream(final Product product) {
+        return Observable.defer(new Callable<ObservableSource<? extends Void>>() {
+            @Override
+            public ObservableSource<? extends Void> call() throws Exception {
+                mDatabase.saveProduct(product.getName(), product.getPrice());
+                return Observable.empty();
+            }
+        });
     }
 }
