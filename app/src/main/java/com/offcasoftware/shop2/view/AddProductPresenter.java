@@ -6,6 +6,7 @@ import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
 import com.offcasoftware.shop2.util.Precondition;
 
 public class AddProductPresenter extends BasePresenter<AddProductView> {
+
     private ProductRepositoryInterface mProductRepositoryInterface;
 
     public AddProductPresenter(ProductRepositoryInterface productRepositoryInterface) {
@@ -15,6 +16,7 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
     public void addProduct(String name, String price) {
         int priceInt = Integer.parseInt(price);
         Product product = new Product(name, priceInt);
+
         try {
             mProductRepositoryInterface.addProduct(product);
             getView().closeScreen();
