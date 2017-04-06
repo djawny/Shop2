@@ -49,4 +49,10 @@ public class AddProductActivity extends AppCompatActivity implements AddProductV
     public void showError() {
         Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAddProductPresenter.clearCompositeDisposable();
+    }
 }
