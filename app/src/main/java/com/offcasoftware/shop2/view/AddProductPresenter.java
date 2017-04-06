@@ -12,8 +12,14 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
         mProductRepositoryInterface = Precondition.checkNotNull(productRepositoryInterface);
     }
 
-    public void addProduct(String name, int price) {
-        Product product = new Product(name, price);
-        mProductRepositoryInterface.addProduct(product);
+    public void addProduct(String name, String price) {
+        int priceInt = Integer.parseInt(price);
+        Product product = new Product(name, priceInt);
+        try {
+            mProductRepositoryInterface.addProduct(product);
+            getView().closeScreen();
+        } catch (Exception e) {
+            getView().showError();
+        }
     }
 }

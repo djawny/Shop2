@@ -13,6 +13,5 @@ public interface ProductRepositoryInterface {
 
     Product getProduct(int productId);
 
-    void addProduct(Product product);
-
+    void addProduct(Product product) throws Exception;
 }
