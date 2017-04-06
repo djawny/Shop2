@@ -19,10 +19,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ProductListPresenterTest {
+
     @Mock
     ProductRepositoryInterface mRepositoryInterface;
+
     @Mock
     ProductListView mProductListView;
+
     private ProductListPresenter mPresenter;
 
     @Before
@@ -40,7 +43,9 @@ public class ProductListPresenterTest {
     @Test
     public void testPresenterShowsNoDataWhenEmptyList() throws Exception {
         when(mRepositoryInterface.getProducts()).thenReturn(Collections.<Product>emptyList());
+
         mPresenter.loadProducts();
+
         verify(mProductListView).showNoDataInfo();
         verify(mProductListView, never()).showErrorInfo();
         verify(mProductListView, never()).showProducts(ArgumentMatchers.<Product>anyList());
@@ -51,7 +56,9 @@ public class ProductListPresenterTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product());
         when(mRepositoryInterface.getProducts()).thenReturn(products);
+
         mPresenter.loadProducts();
+
         verify(mProductListView).showProducts(products);
         verify(mProductListView, never()).showErrorInfo();
         verify(mProductListView, never()).showNoDataInfo();
@@ -62,7 +69,9 @@ public class ProductListPresenterTest {
         List products = mock(List.class);
         when(products.isEmpty()).thenReturn(false);
         when(mRepositoryInterface.getProducts()).thenReturn(products);
+
         mPresenter.loadProducts();
+
         verify(mProductListView).showProducts(products);
         verify(mProductListView, never()).showErrorInfo();
         verify(mProductListView, never()).showNoDataInfo();
@@ -71,7 +80,9 @@ public class ProductListPresenterTest {
     @Test
     public void testPresenterShowsErrorInfoWhenRepositoryException() throws Exception {
         when(mRepositoryInterface.getProducts()).thenThrow(Exception.class);
+
         mPresenter.loadProducts();
+
         verify(mProductListView).showErrorInfo();
         verify(mProductListView, never()).showNoDataInfo();
         verify(mProductListView, never()).showProducts(ArgumentMatchers.<Product>anyList());
