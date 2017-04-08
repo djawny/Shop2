@@ -5,10 +5,9 @@ import com.offcasoftware.shop2.model.Product;
 import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
 import com.offcasoftware.shop2.util.Precondition;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 
 public class AddProductPresenter extends BasePresenter<AddProductView> {
 
@@ -16,9 +15,15 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
 
     private CompositeDisposable mCompositeDisposable;
 
-    public AddProductPresenter(ProductRepositoryInterface productRepositoryInterface) {
+    private Scheduler mSubscribeScheduler;
+    private Scheduler mObserveScheduler;
+
+    public AddProductPresenter(ProductRepositoryInterface productRepositoryInterface,
+                               Scheduler subscribe, Scheduler observe) {
         mProductRepositoryInterface = Precondition.checkNotNull(productRepositoryInterface);
         mCompositeDisposable = new CompositeDisposable();
+        mSubscribeScheduler = subscribe;
+        mObserveScheduler = observe;
     }
 
     public void addProduct(String name, String price) {
@@ -34,8 +39,8 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
 
         mCompositeDisposable.add(mProductRepositoryInterface
                 .AddProductStream(product)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(mSubscribeScheduler)
+                .observeOn(mObserveScheduler)
                 .subscribeWith(new DisposableObserver<Void>() {
                     @Override
                     public void onNext(Void value) {

@@ -12,6 +12,8 @@ import com.offcasoftware.shop2.repository.ProductRepository;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class AddProductActivity extends AppCompatActivity implements AddProductView {
 
@@ -28,7 +30,8 @@ public class AddProductActivity extends AppCompatActivity implements AddProductV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         ButterKnife.bind(this);
-        mAddProductPresenter = new AddProductPresenter(ProductRepository.getInstance());
+        mAddProductPresenter = new AddProductPresenter(ProductRepository.getInstance(),
+                Schedulers.io(), AndroidSchedulers.mainThread());
         mAddProductPresenter.setView(this);
     }
 
