@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.*;
 import static android.support.test.espresso.action.ViewActions.*;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.*;
 
@@ -23,7 +24,7 @@ public class AddProductActivityTestEspresso {
         onView(withId(R.id.product_price)).check(matches(isDisplayed()));
 
         onView(withId(R.id.product_name)).perform(typeText("Product name"));
-        onView(withId(R.id.product_price)).perform(typeText("1"));
+        onView(withId(R.id.product_price)).perform(typeText("1"),closeSoftKeyboard());
 
         onView(withId(R.id.button_add_product)).perform(click());
     }
