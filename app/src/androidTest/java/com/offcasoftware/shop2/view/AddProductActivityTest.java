@@ -4,9 +4,7 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.offcasoftware.shop2.R;
 import com.robotium.solo.Solo;
@@ -52,8 +50,10 @@ public class AddProductActivityTest {
     public void testAddProductActivityHasProperElements() {
         View productName = mSolo.getView(R.id.product_name);
         assertTrue(productName.isShown());
+
         View productPrice = mSolo.getView(R.id.product_price);
         assertTrue(productPrice.isShown());
+
         View buttonAddProduct = mSolo.getView(R.id.button_add_product);
         assertTrue(buttonAddProduct.isShown());
     }
@@ -61,9 +61,11 @@ public class AddProductActivityTest {
     @Test
     public void testAddProduct() {
         EditText productName = (EditText) mSolo.getView(R.id.product_name);
-        mSolo.enterText(productName,PRODUCT_NAME);
+        mSolo.enterText(productName, PRODUCT_NAME);
+
         EditText productPrice = (EditText) mSolo.getView(R.id.product_price);
-        mSolo.enterText(productPrice,PRODUCT_PRICE);
+        mSolo.enterText(productPrice, PRODUCT_PRICE);
+
         View buttonAddProduct = mSolo.getView(R.id.button_add_product);
         mSolo.clickOnView(buttonAddProduct);
     }
@@ -71,9 +73,9 @@ public class AddProductActivityTest {
     @Test
     public void testAddProductButton() {
         EditText productName = (EditText) mSolo.getView(R.id.product_name);
-        mSolo.enterText(productName,PRODUCT_NAME);
+        mSolo.enterText(productName, PRODUCT_NAME);
+
         View buttonAddProduct = mSolo.getView(R.id.button_add_product);
         assertFalse(buttonAddProduct.isEnabled());
     }
-
 }
