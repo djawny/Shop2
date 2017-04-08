@@ -13,8 +13,6 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
 
     private ProductRepositoryInterface mProductRepositoryInterface;
 
-    private CompositeDisposable mCompositeDisposable;
-
     public AddProductPresenter(ProductRepositoryInterface productRepositoryInterface,
                                Scheduler subscribe, Scheduler observe) {
         super(subscribe, observe);

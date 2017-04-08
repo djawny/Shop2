@@ -1,12 +1,17 @@
 package com.offcasoftware.shop2.base;
 
 import io.reactivex.Scheduler;
+import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BasePresenter<V extends BaseView> {
 
     private V mView;
     protected Scheduler mSubscribeScheduler;
     protected Scheduler mObserveScheduler;
+    protected CompositeDisposable mCompositeDisposable;
+
+    public BasePresenter() {
+    }
 
     public BasePresenter(Scheduler scheduler, Scheduler observe) {
         mSubscribeScheduler = scheduler;
