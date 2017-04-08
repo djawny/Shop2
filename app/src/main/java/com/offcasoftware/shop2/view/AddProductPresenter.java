@@ -6,7 +6,6 @@ import com.offcasoftware.shop2.repository.ProductRepositoryInterface;
 import com.offcasoftware.shop2.util.Precondition;
 
 import io.reactivex.Scheduler;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 
 public class AddProductPresenter extends BasePresenter<AddProductView> {
@@ -17,6 +16,19 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
                                Scheduler subscribe, Scheduler observe) {
         super(subscribe, observe);
         mProductRepositoryInterface = Precondition.checkNotNull(productRepositoryInterface);
+    }
+
+    public void setUpView() {
+        getView().enableAddButton(false);
+    }
+
+    public void onTextChanged(String name, String price){
+        final boolean validName = name!=null && !name.isEmpty();
+        final boolean validPrice = price!=null && !price.isEmpty();
+
+        final boolean addButtonEnabled = validName && validPrice;
+
+        getView().enableAddButton(addButtonEnabled);
     }
 
     public void addProduct(String name, String price) {

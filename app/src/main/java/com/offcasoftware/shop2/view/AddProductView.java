@@ -7,4 +7,6 @@ public interface AddProductView extends BaseView {
     void closeScreen();
 
     void showError();
+
+    void enableAddButton(boolean enabled);
 }
