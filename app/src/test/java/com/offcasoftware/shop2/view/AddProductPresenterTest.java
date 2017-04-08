@@ -60,6 +60,9 @@ public class AddProductPresenterTest {
 
     @Test
     public void testAddProductCloseScreen() {
+        when(mProductRepositoryInterface.addProductStream(any(Product.class)))
+                .thenReturn(Observable.<Void>empty());
+
         mPresenter.addProduct("product", "1");
 
         verify(mAddProductView, never()).showError();

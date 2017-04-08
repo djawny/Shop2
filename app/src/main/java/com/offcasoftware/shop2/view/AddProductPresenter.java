@@ -15,15 +15,11 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
 
     private CompositeDisposable mCompositeDisposable;
 
-    private Scheduler mSubscribeScheduler;
-    private Scheduler mObserveScheduler;
-
     public AddProductPresenter(ProductRepositoryInterface productRepositoryInterface,
                                Scheduler subscribe, Scheduler observe) {
+        super(subscribe, observe);
         mProductRepositoryInterface = Precondition.checkNotNull(productRepositoryInterface);
         mCompositeDisposable = new CompositeDisposable();
-        mSubscribeScheduler = subscribe;
-        mObserveScheduler = observe;
     }
 
     public void addProduct(String name, String price) {
