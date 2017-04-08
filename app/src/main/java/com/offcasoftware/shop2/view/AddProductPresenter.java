@@ -38,7 +38,7 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
 //        }
 
         mCompositeDisposable.add(mProductRepositoryInterface
-                .AddProductStream(product)
+                .addProductStream(product)
                 .subscribeOn(mSubscribeScheduler)
                 .observeOn(mObserveScheduler)
                 .subscribeWith(new DisposableObserver<Void>() {

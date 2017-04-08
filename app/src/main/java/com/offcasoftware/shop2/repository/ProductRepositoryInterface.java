@@ -17,5 +17,5 @@ public interface ProductRepositoryInterface {
 
     void addProduct(Product product) throws Exception;
 
-    Observable<Void> AddProductStream(Product product);
+    Observable<Void> addProductStream(Product product);
 }

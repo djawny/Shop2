@@ -7,12 +7,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.stubbing.answers.ThrowsException;
 
+import io.reactivex.Observable;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -50,6 +49,8 @@ public class AddProductPresenterTest {
     public void testAddProductRepositoryExceptionShowsError() throws Exception {
 //        doThrow(new Exception()).when(mProductRepositoryInterface).addProduct(any(Product.class));
 
+        when(mProductRepositoryInterface.addProductStream(any(Product.class)))
+                .thenReturn(Observable.<Void>error(new Throwable()));
 
         mPresenter.addProduct("product", "1");
 

@@ -60,7 +60,7 @@ public class ProductRepository implements ProductRepositoryInterface {
     }
 
     @Override
-    public Observable<Void> AddProductStream(final Product product) {
+    public Observable<Void> addProductStream(final Product product) {
         return Observable.defer(new Callable<ObservableSource<? extends Void>>() {
             @Override
             public ObservableSource<? extends Void> call() throws Exception {
