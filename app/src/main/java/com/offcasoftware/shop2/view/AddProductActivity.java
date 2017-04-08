@@ -56,6 +56,6 @@ public class AddProductActivity extends AppCompatActivity implements AddProductV
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAddProductPresenter.clearCompositeDisposable();
+        mAddProductPresenter.clearDisposible();
     }
 }

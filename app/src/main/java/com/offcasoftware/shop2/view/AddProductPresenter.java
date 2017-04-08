@@ -17,7 +17,6 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
                                Scheduler subscribe, Scheduler observe) {
         super(subscribe, observe);
         mProductRepositoryInterface = Precondition.checkNotNull(productRepositoryInterface);
-        mCompositeDisposable = new CompositeDisposable();
     }
 
     public void addProduct(String name, String price) {
@@ -31,7 +30,7 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
 //            getView().showError();
 //        }
 
-        mCompositeDisposable.add(mProductRepositoryInterface
+        addDisposable(mProductRepositoryInterface
                 .addProductStream(product)
                 .subscribeOn(mSubscribeScheduler)
                 .observeOn(mObserveScheduler)
@@ -50,9 +49,5 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
                         getView().closeScreen();
                     }
                 }));
-    }
-
-    public void clearCompositeDisposable() {
-        mCompositeDisposable.clear();
     }
 }
