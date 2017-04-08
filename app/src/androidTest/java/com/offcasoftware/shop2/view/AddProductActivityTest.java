@@ -25,8 +25,7 @@ public class AddProductActivityTest {
     private static final String PRODUCT_PRICE = "9999";
 
     @Rule
-    public ActivityTestRule<AddProductActivity> mActivityTestRule =
-            new ActivityTestRule<>(AddProductActivity.class);
+    public ActivityTestRule<AddProductActivity> mActivityTestRule = new ActivityTestRule<>(AddProductActivity.class);
 
     private Solo mSolo;
 
@@ -77,5 +76,7 @@ public class AddProductActivityTest {
 
         View buttonAddProduct = mSolo.getView(R.id.button_add_product);
         assertFalse(buttonAddProduct.isEnabled());
+
+        mSolo.takeScreenshot();
     }
 }
