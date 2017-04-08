@@ -17,6 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -65,6 +66,14 @@ public class AddProductActivityTest {
         mSolo.enterText(productPrice,PRODUCT_PRICE);
         View buttonAddProduct = mSolo.getView(R.id.button_add_product);
         mSolo.clickOnView(buttonAddProduct);
+    }
+
+    @Test
+    public void testAddProductButton() {
+        EditText productName = (EditText) mSolo.getView(R.id.product_name);
+        mSolo.enterText(productName,PRODUCT_NAME);
+        View buttonAddProduct = mSolo.getView(R.id.button_add_product);
+        assertFalse(buttonAddProduct.isEnabled());
     }
 
 }
