@@ -22,9 +22,9 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
         getView().enableAddButton(false);
     }
 
-    public void onTextChanged(String name, String price){
-        final boolean validName = name!=null && !name.isEmpty();
-        final boolean validPrice = price!=null && !price.isEmpty();
+    public void onTextChanged(String name, String price) {
+        final boolean validName = name != null && !name.isEmpty();
+        final boolean validPrice = price != null && !price.isEmpty();
 
         final boolean addButtonEnabled = validName && validPrice;
 
@@ -34,13 +34,6 @@ public class AddProductPresenter extends BasePresenter<AddProductView> {
     public void addProduct(String name, String price) {
         int priceInt = Integer.parseInt(price);
         Product product = new Product(name, priceInt);
-
-//        try {
-//            mProductRepositoryInterface.addProduct(product);
-//            getView().closeScreen();
-//        } catch (Exception e) {
-//            getView().showError();
-//        }
 
         addDisposable(mProductRepositoryInterface
                 .addProductStream(product)
